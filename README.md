@@ -1,41 +1,50 @@
 # fastText
 
-[fastText](https://fasttext.cc/) is a library for efficient learning of word representations and sentence classification.
-
-## FAQ / Cheatsheet
-
-You can find [answers to frequently asked questions](https://fasttext.cc/docs/en/faqs.html#content) on our [website](https://fasttext.cc/).
-
-We also provide a [cheatsheet](https://fasttext.cc/docs/en/cheatsheet.html#content) full of useful one-liners.
+[fastText](https://fasttext.cc/) 自然言語ライブラリ    
 
 ## Requirements
 
-**fastText** builds on modern Mac OS and Linux distributions.
-Since it uses C++11 features, it requires a compiler with good C++11 support.
-These include :
+**fastText** mac OSかLinuxでのビルド
+C++11をサポート
 
 * (gcc-4.6.3 or newer) or (clang-3.3 or newer)
-
-Compilation is carried out using a Makefile, so you will need to have a working **make**.
-For the word-similarity evaluation script you will need:
-
 * python 2.6 or newer
 * numpy & scipy
 
 ## Building fastText
 
-In order to build `fastText`, use the following:
-
 ```
-$ git clone https://github.com/facebookresearch/fastText.git
-$ cd fastText
+$ git clone https://github.com/miyamotok0105/fastText_ja.git
+$ cd fastText_ja
 $ make
 ```
 
-This will produce object files for all the classes as well as the main binary `fasttext`.
-If you do not plan on using the default system-wide compiler, update the two macros defined at the beginning of the Makefile (CC and INCLUDES).
-
 ## Example use cases
+
+### ニュース分類
+
+rondhuit datasetよりニュースコーパスをダウンロード。    
+https://www.rondhuit.com/download.html    
+
+分類しにくそうなカテゴリを削った。    
+
+```
+it-life-hack
+__label__1
+movie-enter
+__label__2
+peachy
+__label__3
+sports-watch
+__label__4
+```
+
+```
+$ ./fasttext supervised -input livedoordic_fasttext.txt -output livedoor_model
+$ ./fasttext supervised -input livedoor_test_c4.txt -output livedoor_model -lr 0.15 -dim 10 -bucket 10000
+$ ./fasttext test livedoor_model.bin livedoor_test_c4.txt
+```
+
 
 This library has two main use cases: word representation learning and text classification.
 These were described in the two papers [1](#enriching-word-vectors-with-subword-information) and [2](#bag-of-tricks-for-efficient-text-classification).
@@ -231,13 +240,6 @@ You can find the preprocessed YFCC100M data used in [2] at https://research.face
 
 Pre-trained word vectors for 294 languages are available [*here*](https://github.com/facebookresearch/fastText/blob/master/pretrained-vectors.md).
 
-## Join the fastText community
-
-* Facebook page: https://www.facebook.com/groups/1174547215919768
-* Google group: https://groups.google.com/forum/#!forum/fasttext-library
-* Contact: [egrave@fb.com](mailto:egrave@fb.com), [bojanowski@fb.com](mailto:bojanowski@fb.com), [ajoulin@fb.com](mailto:ajoulin@fb.com), [tmikolov@fb.com](mailto:tmikolov@fb.com)
-
-See the CONTRIBUTING file for information about how to help out.
 
 ## License
 
