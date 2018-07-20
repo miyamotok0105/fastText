@@ -14,8 +14,9 @@ def get_dir_list():
     tmp = os.listdir(DATA_DIR_PATH)
     if tmp is None:
         return None
+    #ここ　エラー出るなら　削ったりしていじってね
     tmp.remove("CHANGES.txt")
-    tmp.remove(".DS_Store")
+    # tmp.remove(".DS_Store")
     tmp.remove("README.txt")
     return tmp
 

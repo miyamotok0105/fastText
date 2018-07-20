@@ -11,6 +11,11 @@ C++11をサポート
 * python 2.6 or newer
 * numpy & scipy
 
+```
+pip install gensim==3.5.0
+pip install mecab-python3==0.7
+```
+
 ## Building fastText
 
 ```
@@ -25,6 +30,13 @@ $ make
 
 rondhuit datasetよりニュースコーパスをダウンロード。    
 https://www.rondhuit.com/download.html    
+
+
+```
+wget https://www.rondhuit.com/download/ldcc-20140209.tar.gz
+tar -zxvf ldcc-20140209.tar.gz
+python corpus_fasttext.py
+```
 
 分類しにくそうなカテゴリを削った。    
 
